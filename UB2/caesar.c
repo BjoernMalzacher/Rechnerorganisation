@@ -20,13 +20,13 @@
  * \param text
  * \return the length of text
  */
-static unsigned int stringLength(char* text)
-{
-    /************************/
-    /** put your code here **/
-    
-    
-    /************************/
+static unsigned int stringLength(char* text) {
+ unsigned int i;
+ while (*text != '\0') {
+     i +=1;
+     text +=1;
+ }
+ return i;
 }
 
 
@@ -54,13 +54,25 @@ static char* createBuffer(char* text)
  * \param n the rotate offset
  * \return the rotated character
  */
-static char rotateChar(char c, int n)
-{
-    /************************/
-    /** put your code here **/
+static char rotateChar(char c, int n) {
     
-    
-    /************************/
+    if(c >= 'A' && c <='Z') {
+      if((c+n)>= 'Z'){
+          
+          c = 'A'+ (((c+n)-'A')% (26));
+      }else{
+          c +=n;
+      }
+        return c;
+    }
+    if(c >= 'a' && c <='z') {
+      if((c+n)>= 'z'){
+          c = 'a'+(((c+n)-'a')% (26));
+      }else{
+          c +=n;
+      }
+        return c;
+    }
 }
 
 
@@ -71,13 +83,18 @@ static char rotateChar(char c, int n)
  * \param key
  * \return crypted text
  */
-static char* encrypt(char* text, int key)
-{
-    /************************/
-    /** put your code here **/
+static char* encrypt(char* text, int key) {
+    char* buffer = createBuffer(text);
+    char* bufferstart = buffer;
+    while (*text != '\0') {
+        
+        *buffer = rotateChar( *text, key);
+        buffer ++; 
+        text+=1;
+    }
+   
     
-    
-    /************************/
+    return bufferstart;
 }
 
 
@@ -88,13 +105,17 @@ static char* encrypt(char* text, int key)
  * \param key
  * \return crypted text
  */
-static char* decrypt(char* crypted, int key)
-{
-    /************************/
-    /** put your code here **/
-    
-    
-    /************************/
+static char* decrypt(char* crypted, int key) {
+    ;
+    char* buffer = createBuffer(crypted);
+    char* bufferstart = buffer;
+    while (*crypted!= '\0') {
+        
+        *buffer = rotateChar( *crypted, 26-key);
+        buffer ++; 
+        crypted+=1;
+    }
+    return bufferstart;
 }
 
 
@@ -126,7 +147,8 @@ int main(int argc, char* argv[])
     printf("crypted:   %s\n", crypted);
     char* decrypted = decrypt(crypted, key);
     printf("decrypted: %s\n", decrypted);
-
+    printf("%s\n",encrypt("Björn Malzacher",2353051));
+    printf("%s\n",encrypt("Peter Müller", 1234567));
     free(crypted);
     free(decrypted);
     return 0;
