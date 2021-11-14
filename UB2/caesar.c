@@ -3,10 +3,10 @@
  * Institut fuer Technische Informatik (ITEC) 
  * Vorlesung Rechnerorganisation
  *
- * Autor: 
- * Matrikelnummer:
- * Tutoriumsnummer:
- * Name des Tutors:
+ * Autor: Bjoern Malzacher
+ * Matrikelnummer: 2353051
+ * Tutoriumsnummer: 08
+ * Name des Tutors: Sandro Negri
  *
  */
 

@@ -4,9 +4,9 @@
  * Vorlesung Rechnerorganisation
  *
  * Autor: 
- * Matrikelnummer:
- * Tutoriumsnummer:
- * Name des Tutors:
+ * Matrikelnummer: 2353051
+ * Tutoriumsnummer: 08
+ * Name des Tutors: Sandro Negri
  *
  */
 
@@ -21,11 +21,7 @@
  */
 static int fpsign(uint32_t number)
 {
-    /************************/
-    /** put your code here **/
-    
-    
-    /************************/
+    return number >> 31;
 }
 
 /**
@@ -34,13 +30,8 @@ static int fpsign(uint32_t number)
  * \param number Number to operate on (in IEEE 754 single precision format).
  * \return Value of the mantisse.
  */
-static int fpmantissa(uint32_t number)
-{
-    /************************/
-    /** put your code here **/
-    
-    
-    /************************/
+static int fpmantissa(uint32_t number) {
+   return number & 8388607;
 }
 
 /**
@@ -49,14 +40,11 @@ static int fpmantissa(uint32_t number)
  * \param number Number to operate on (in IEEE 754 single precision format).
  * \return Value of the exponent.
  */
-static int fpexponent(uint32_t number)
-{
-    /************************/
-    /** put your code here **/
-    
-    
-    /************************/
+static int fpexponent(uint32_t number) {
+    return (number &4278190080) >> 23;
+
 }
+
 
 #ifndef TEST
 /**
